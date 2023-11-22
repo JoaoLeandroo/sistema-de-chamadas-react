@@ -40,7 +40,7 @@ export default function Signin() {
                     <button type='submit'>Logar</button>
                 </form>
 
-                <Link href={'/'} className='link-login-register'>Crie Sua Conta</Link>
+                <Link href={'/pages/SignUp'} className='link-login-register'>Crie Sua Conta</Link>
             </div>
         </div>
     )
