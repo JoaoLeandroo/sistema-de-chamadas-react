@@ -1,14 +1,27 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import '../Signin/signin.css'
+
+import { AuthContext } from '@/app/contexts/auth'
 
 export default function SignUp() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const { signUp } = useContext(AuthContext)
+
+    function handleSubmit(e) {
+        e.preventDefault()
+
+        if(name !== "" && email !== "" && password !== "") {
+            signUp(email, password, name)
+            console.log("Cadastrado com sucesso")
+        }
+    }
 
     return(
         <div className='container-center'>
@@ -23,7 +36,7 @@ export default function SignUp() {
                     />
                 </div>
 
-                <form className='form-login'>
+                <form className='form-login' onSubmit={handleSubmit}>
                     <input 
                         type="text" 
                         placeholder='Informe seu nome'

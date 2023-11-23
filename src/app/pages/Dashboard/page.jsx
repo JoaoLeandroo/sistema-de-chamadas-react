@@ -3,7 +3,7 @@ import '../Dashboard/dashboard.css'
 export default function Dashboard() {
     return(
         <>
-            Meu Dashboard
+            <h1>DashBoard configure</h1>
         </>
     )
 }
