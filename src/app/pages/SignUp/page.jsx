@@ -12,15 +12,17 @@ export default function SignUp() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const { signUp } = useContext(AuthContext)
+    const { signUp, loadingAuth } = useContext(AuthContext)
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
 
         if(name !== "" && email !== "" && password !== "") {
-            signUp(email, password, name)
+            await signUp(email, password, name)
             console.log("Cadastrado com sucesso")
         }
+
+
     }
 
     return(
@@ -33,6 +35,7 @@ export default function SignUp() {
                         width={100}
                         height={100}
                         alt='Logo sistema de chamados'
+                        priority={true}
                     />
                 </div>
 
@@ -45,7 +48,7 @@ export default function SignUp() {
                     />
 
                     <input 
-                        type="text" 
+                        type="email" 
                         placeholder='email@email.com'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -58,7 +61,9 @@ export default function SignUp() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    <button type='submit'>Cadastrar</button>
+                    <button type='submit'>
+                        {loadingAuth ? "Carregando..." : "Cadastrar"}
+                    </button>
                 </form>
 
                 <Link href={'/pages/Signin'} className='link-login-register'>Já possui uma conta? Clique aqui</Link>
